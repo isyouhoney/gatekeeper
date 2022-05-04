@@ -58,6 +58,7 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Member List"),
         actions: [
@@ -65,7 +66,7 @@ class _AccountPageState extends State<AccountPage> {
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
                 icon: Icon(Icons.add_reaction_outlined,
-                    size: 38, color: Color.fromARGB(145, 254, 226, 83)),
+                    size: 38, color: Color.fromARGB(255, 255, 239, 157)),
                 onPressed: () {
                   TextEditingController controller = TextEditingController();
 
@@ -130,7 +131,7 @@ class _AccountPageState extends State<AccountPage> {
                               style: TextStyle(
                                   color: Colors.white, fontSize: 16.0),
                             ),
-                            color: Colors.redAccent,
+                            color: Color.fromARGB(238, 212, 174, 178),
                           )
                         ],
                       ),

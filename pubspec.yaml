@@ -37,6 +37,8 @@ dependencies:
   firebase_core: ^1.13.1
   firebase_auth: ^3.3.9
   firebase_storage: ^10.2.4
+  firebase_messaging: ^11.2.14
+  flutter_local_notifications: ^9.4.0
   google_sign_in: ^5.2.4
   lottie: ^1.2.2
   path: 

@@ -177,11 +177,8 @@ class _AddMemberPageState extends State<AddMemberPage> {
                             if (_args != null && _args.containsKey('index')) {
                               // _data.updateMember(_args['index'],
                               // _data.getMember(_idx)(_controller.text, _data.getMember(_idx).imgs));
-                              Get.snackbar('Information Updated', '수정되었습니다.');
-                            } else {
-                              _data.getMember(_idx).name = _controller.text;
-                              // _data.addMember(_data.getMember(_idx));
-                              Get.snackbar('Registered', '등록되었습니다.');
+                              Get.snackbar(
+                                  'Information Registered', '등록되었습니다.');
                             }
                             _data.updateUserName(_idx, _controller.text);
                             Get.offAllNamed('/member_list', arguments: _args);
@@ -215,6 +212,7 @@ class _AddMemberPageState extends State<AddMemberPage> {
                           ),
                           onPressed: () {
                             Get.snackbar('Delete', '삭제되었습니다.');
+                            // _data.deleteImg(_idx, img!.path);
                             _data.deleteMember(_idx);
 
                             Get.offAllNamed('/member_list', arguments: _args);

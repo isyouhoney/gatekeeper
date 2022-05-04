@@ -40,7 +40,8 @@ class Member<T extends MemberType> extends GetConnect {
     });
     final response = await post(
         'https://gate-keeper-v1.herokuapp.com/acct/${aid}/${memberType}', form);
-    print('${response.body} ${response.statusCode} ${url} ${response}');
+    print(
+        'add member : ${response.body} ${response.statusCode} ${url} ${response}');
 
     print('acct: ${response.body}');
     // u.imgs[0] = response.body['url'];
@@ -128,7 +129,17 @@ class Member<T extends MemberType> extends GetConnect {
     return person.length;
   }
 
-  void deleteMember(int idx) {
+  void deleteMember(int idx) async {
+    // var imgUrl =
+    //     'https://gate-keeper-v1.herokuapp.com/${memberType}/${idx}/imgs';
+    // var img_response = await get(imgUrl);
+    // for (var i = 0; i < img_response.body.length; i++) {
+    //   var id = img_response.body[i]['id'];
+    //   delete('https://gate-keeper-v1.herokuapp.com/${memberType}/${idx}/img/${id}')
+    //       .then((response) {
+    //     print('delImg : ${response.body} ${response.statusCode} ${imgUrl}');
+    //   });
+    // }
     var mid = person[idx].key;
     String url =
         'https://gate-keeper-v1.herokuapp.com/acct/${memberType}/${mid}';

@@ -31,15 +31,18 @@ class Notice extends StatelessWidget {
 
   Widget listViewItem(int index) {
     return Container(
-      margin: EdgeInsets.only(left: 10),
+      margin: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           prefixIcon(),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [message(index), timeAndDate(index)],
+            child: Container(
+              margin: EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [message(index), timeAndDate(index)],
+              ),
             ),
           ),
         ],
@@ -49,8 +52,8 @@ class Notice extends StatelessWidget {
 
   Widget prefixIcon() {
     return Container(
-      height: 45,
-      width: 45,
+      height: 50,
+      width: 50,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
@@ -71,7 +74,7 @@ class Notice extends StatelessWidget {
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           text: TextSpan(
-              text: 'Message Discription',
+              text: '',
               style: TextStyle(
                   fontSize: testSize,
                   color: Colors.black,
@@ -92,6 +95,10 @@ class Notice extends StatelessWidget {
         children: [
           Text(
             '26-03-2022',
+            style: TextStyle(fontSize: 10),
+          ),
+          Text(
+            '07:10 am',
             style: TextStyle(fontSize: 10),
           )
         ],

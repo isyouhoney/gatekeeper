@@ -1,5 +1,4 @@
-// import 'dart:convert';
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gatekeeper/controller/login_service.dart';
 import 'package:get/get.dart';
@@ -22,16 +21,29 @@ class _InitialPageState extends State<InitialPage> {
     // TODO: implement initState
     super.initState();
     _googleSignIn = Get.find<GoogleSignIn>();
+    Get.put(_googleSignIn);
+    // 앱 실행시 구글 사용자의 변경여부 확인
+    _googleSignIn.onCurrentUserChanged
+        .listen((GoogleSignInAccount? account) async {
+      UserProvider user = UserProvider();
 
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
       setState(() {
-        debugPrint('$account');
+        debugPrint('_googleSignIn account : $account');
         // 로그인 시도
-        UserProvider user = UserProvider();
         user.loginUser(account!.email, account.email).then((value) {
-          // Get.put(user);
-          Get.offAllNamed('/home_screen',
-              arguments: {'account': account, 'user': user});
+          print(
+              'user.addr : ${user.addr} , user.phone : ${user.phone}, user.id : ${user.id}');
+          // if (value == -1) {
+          //   Get.snackbar('미등록 사용자', '등록되지 않은 사용자 입니다. 관리실에 문의하시기 바랍니다.');
+          //   Get.offAllNamed('/join', arguments: {'account': account});
+          // }
+
+          if (value == -1) {
+            Get.offAllNamed('/join', arguments: {'account': account});
+          } else {
+            Get.offAllNamed('/home_screen',
+                arguments: {'account': account, 'user': user});
+          }
         });
       });
     });

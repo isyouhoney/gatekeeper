@@ -1,9 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:gatekeeper/controller/login_service.dart';
-import 'package:gatekeeper/controller/member_provider.dart';
-import 'package:gatekeeper/controller/visit_record.dart';
-import 'package:gatekeeper/model/visitor.dart';
-import 'package:gatekeeper/noti_page.dart';
-import 'package:gatekeeper/setting/colors.dart';
+import 'package:gatekeeper/controller/noti_service.dart';
+import 'package:gatekeeper/view/noti_page.dart';
+import 'package:gatekeeper/view/_/join.dart';
 import 'package:gatekeeper/view/home/home_screen.dart';
 import 'package:gatekeeper/view/login_screen.dart';
 import 'package:gatekeeper/view/member/member_list.dart';
@@ -16,27 +15,29 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:core';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
-  // Optional clientId
-  // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
-  scopes: <String>[
+  scopes: [
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
   ],
 );
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Get.put(_googleSignIn);
   // Get.put(UserProvider());
+
   runApp(GetMaterialApp(
+      initialBinding:
+          BindingsBuilder.put(() => NotificationController(), permanent: true),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          // scaffoldBackgroundColor: mobileBackgroundColor,
           appBarTheme: AppBarTheme(
         color: Color.fromARGB(207, 212, 174, 178),
       )),
       initialRoute: "/login_screen",
       getPages: [
+        GetPage(name: "/join", page: () => JoinPage()),
         GetPage(name: "/member_list", page: () => AccountPage()),
         GetPage(name: "/add_member", page: () => AddMemberPage()),
         GetPage(name: "/login_screen", page: () => InitialPage()),

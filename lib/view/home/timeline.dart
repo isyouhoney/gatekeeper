@@ -49,6 +49,12 @@ class _TimelineState extends State<Timeline> {
   }
 
   @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: SafeArea(

@@ -8,6 +8,7 @@ class VisitorRecord extends GetConnect {
   VisitorRecord({required this.user});
 
   Future<List<VisitorData>> getRecord() async {
+    print('user : ${user}');
     String url =
         'https://gate-keeper-v1.herokuapp.com/cam/${user.camId}/visitors';
     final response = await get(url);
